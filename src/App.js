@@ -1,15 +1,14 @@
 import "./App.css";
 import Header from "./Header";
+import Content from "./Content";
+import Footer from "./Footer";
 
 function App() {
-  const handleNameChange = () => {
-    const names = ["Kofi", "Ama", "Yaa", "Yaw", "Kweku", "Akua", "Kwame"];
-    const int = Math.floor(Math.random() * names.length);
-    return names[int];
-  };
   return (
     <div className="App">
       <Header />
+      <Content />
+      <Footer />
     </div>
   );
 }
