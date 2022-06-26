@@ -26,7 +26,7 @@ function App() {
         setFetchError(err.message);
       }
     };
-    fetchItems();
+    (async () => await fetchItems())();
   }, []);
 
   const handleCheck = (id) => {
