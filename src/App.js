@@ -4,9 +4,10 @@ import AddItem from "./AddItem";
 import Content from "./Content";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
+import apiRequest from "./apiRequest";
 
 function App() {
-  const API_URL = "http://localhost:3500/items";
+  const API_URL = "http://localhost:3500/itemss";
 
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState("");
@@ -30,7 +31,7 @@ function App() {
     };
     setTimeout(() => {
       (async () => await fetchItems())();
-    }, 5000);
+    }, 2000);
   }, []);
 
   const handleCheck = (id) => {
@@ -46,11 +47,21 @@ function App() {
     localStorage.setItem("shoppingList", JSON.stringify(listItems));
   };
 
-  const addItem = (item) => {
+  const addItem = async (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
     const myNewItem = { id, checked: false, item };
     const listItems = [...items, myNewItem];
     setItems(listItems);
+
+    const postOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(myNewItem),
+    };
+    const result = await apiRequest(API_URL, postOptions);
+    if (result) setFetchError(result);
   };
 
   const handleSubmit = (e) => {
