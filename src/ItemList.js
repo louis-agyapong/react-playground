@@ -3,18 +3,16 @@ import LineItem from "./LineItem";
 
 const ItemList = ({ items, handleCheck, handleDelete }) => {
   return (
-    <div>
       <ul>
         {items.map((item) => (
           <LineItem
-          key={item.id}
+            key={item.id}
             item={item}
             handleCheck={handleCheck}
             handleDelete={handleDelete}
           />
         ))}
       </ul>
-    </div>
   );
 };
 
